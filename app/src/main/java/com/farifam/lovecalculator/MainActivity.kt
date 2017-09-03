@@ -1,5 +1,8 @@
 package com.farifam.lovecalculator
 
+
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -22,6 +25,9 @@ import okhttp3.OkHttpClient
 import okhttp3.Response
 import retrofit2.http.Headers
 import java.io.IOException
+import android.graphics.drawable.Drawable
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -36,6 +42,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val adView = findViewById(R.id.adView) as AdView
+        val adRequest = AdRequest.Builder()
+                .setRequestAgent("android_studio:ad_template").build()
+        adView.loadAd(adRequest)
+
 //        val name=findViewById(R.id.name) as EditText;
 //        val partner_name=findViewById(R.id.partner_name) as EditText;
 //        val submit=findViewById(R.id.submit) as Button;
@@ -45,6 +56,7 @@ class MainActivity : AppCompatActivity() {
 //        val res_title=findViewById(R.id.res_title) as TextView;
 //        val res_explanation=findViewById(R.id.res_explanation) as TextView;
         progressBar1.visibility=View.GONE;
+        loading.visibility=View.GONE;
         res.visibility=View.GONE;
 
         submit.setOnClickListener {
@@ -73,7 +85,25 @@ class MainActivity : AppCompatActivity() {
                         { data ->
                             run {
                                 progressBar1.visibility=View.GONE;
+
+                                loading.visibility=View.VISIBLE;
                                 res.visibility=View.VISIBLE;
+
+                                val percent=data.percentage.toFloat();
+
+                                var img_data= "balloons";
+                                if(percent<50){
+                                    img_data="dislike";
+                                }
+                                else if(percent>=50 && percent <=75){
+                                    img_data="heart_sketch";
+                                }
+
+                                val imageId = resources.getIdentifier(img_data, "mipmap", getPackageName())
+                                //this.createTable(r.getStringArray(titleId),r.getStringArray(dataId));
+//                                img.setImageResource(imageId)
+                                loading.setImageResource(imageId);
+
                                 res_title.text = "${data.percentage} %";
                                 res_explanation.text = "${data.result}"
                             }},
@@ -89,15 +119,9 @@ class MainActivity : AppCompatActivity() {
 
 object Model {
     data class Data(val result: String, val percentage: String)
-//    data class Result(val percentage: String, val label: String)
-//    data class Result(val totalhits: Int)
 }
 
 interface WikiApiService {
-
-//    @Headers({
-//        "X-Mashape-Key": "RJRlITgCSCmshYHawXRnlJFc1KH8p1f8jtujsnaIUdxXyHR1vR"
-//    })
     @GET("getPercentage")
     fun hitCountCheck(@Query("fname") fname: String,
                       @Query("sname") sname: String):
@@ -105,13 +129,10 @@ interface WikiApiService {
 
     companion object {
         fun create(): WikiApiService {
-
-//            String url="https://love-calculator.p.mashape.com/getPercentage?fname="+name1+"&sname="+name2";
-
             val httpClient = OkHttpClient().newBuilder();
 
             httpClient.addInterceptor(Interceptor { chain ->
-                val request = chain.request().newBuilder().addHeader("X-Mashape-Key", "your_api").build()
+                val request = chain.request().newBuilder().addHeader("X-Mashape-Key", "RJRlITgCSCmshYHawXRnlJFc1KH8p1f8jtujsnaIUdxXyHR1vR").build()
                 chain.proceed(request)
             })
 

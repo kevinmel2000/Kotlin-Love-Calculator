@@ -1,143 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e8e8e7"
     tools:context="com.farifam.lovecalculator.MainActivity">
 
-    <RelativeLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="8dp"
-        tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp">
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
 
-            <LinearLayout
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <RelativeLayout
                 android:layout_width="fill_parent"
-                android:layout_height="match_parent"
-                android:paddingBottom="70dp" >
+                android:layout_height="wrap_content">
 
-                <ScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Love Calculator"
+                    android:textAlignment="viewStart"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-                <LinearLayout android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginBottom="20dp"
-                    android:orientation="vertical"
-                    android:gravity="center_horizontal"
-                    android:background="@drawable/graycolor"
-                    >
+                <ImageButton
+                    android:id="@+id/bar_step"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="35dip"
+                    android:layout_height="35dip"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:src="@mipmap/res_step" />
 
+            </RelativeLayout>
+        </android.support.v7.widget.Toolbar>
 
-                    <ImageView android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:background="@mipmap/cardiogram"
-                        android:layout_gravity="center_horizontal"/>
+    </android.support.design.widget.AppBarLayout>
 
-                    <EditText android:layout_width="fill_parent"
-                        android:layout_height="40dp"
-                        android:id="@+id/name"
-                        android:hint="Enter name"
-                        android:background="#f3f3f3"
-                        android:paddingLeft="5dp"
-                        android:layout_marginTop="30dp"/>
-
-                    <EditText android:layout_width="fill_parent"
-                        android:layout_height="40dp"
-                        android:id="@+id/partner_name"
-                        android:hint="Enter partner name"
-                        android:background="#f3f3f3"
-                        android:paddingLeft="5dp"
-                        android:layout_marginTop="15dp"/>
-
-                    <Button android:layout_width="190dp"
-                        android:layout_height="38dp"
-                        android:id="@+id/submit"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="16dp"
-                        android:text="Check Love Percentage"
-                        android:textColor="#fff"
-                        android:textSize="13dp"
-                        android:background="#13b586"/>
-
-                    <ProgressBar
-                        android:id="@+id/progressBar1"
-                        style="?android:attr/progressBarStyleLarge"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true" />
-
-
-                    <ImageView android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:id="@+id/loading"
-                        android:src="@mipmap/balloons"
-                        android:layout_marginTop="15dp"
-                        android:layout_gravity="center_horizontal"/>
-
-                    <LinearLayout
-                        android:layout_marginTop="15dp"
-                        android:id="@+id/res"
-                        android:background="@drawable/blackcolor"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center_horizontal"
-                        >
-
-                        <TextView
-                            android:id="@+id/res_title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="16dp"
-                            android:textColor="#ffffff"
-                            android:text="Register Here"
-                            android:textStyle="bold"
-                            />
-                        <TextView
-                            android:id="@+id/res_explanation"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="14dp"
-                            android:textColor="#ffffff"
-                            android:text="|"
-                            />
-
-                    </LinearLayout>
-                </LinearLayout>
-            </ScrollView>
-        </LinearLayout>
-
-
-        <com.google.android.gms.ads.AdView
-            android:id="@+id/adView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            ads:adSize="BANNER"
-            ads:adUnitId="@string/banner_ad_unit_id" />
-
-    </RelativeLayout>
-
-</android.support.constraint.ConstraintLayout>
+    <include layout="@layout/content_main" />
+</android.support.design.widget.CoordinatorLayout>

@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">Love Calculator</string>
     <string name="banner_ad_unit_id">ca-app-pub-9002838816755637/4244815975</string>
+
+
+    <string name="top_title">Healthy Life</string>
+    <string name="label_description">10.000 step per day</string>
+    <string name="label_insctuction">Click on "START" button, application will count your step and distance. Click on "STOP" to make application stop count your step</string>
+
+    <string name="start">START</string>
+    <string name="stop">STOP</string>
+    <string name="reset">RESET</string>
 </resources>

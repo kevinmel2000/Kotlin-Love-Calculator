@@ -1,10 +1,13 @@
 package com.farifam.lovecalculator
 
 
+import android.content.Intent
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.view.GravityCompat
+import android.support.v4.widget.DrawerLayout
 import android.view.View
 import android.widget.*
 //import jdk.nashorn.internal.runtime.ScriptingFunctions.readLine
@@ -20,14 +23,11 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Query
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.content_main.*
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.Response
-import retrofit2.http.Headers
-import java.io.IOException
-import android.graphics.drawable.Drawable
-
-
+import android.support.v7.widget.Toolbar
+import android.view.MenuItem
 
 
 class MainActivity : AppCompatActivity() {
@@ -42,7 +42,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val adView = findViewById(R.id.adView) as AdView
+        setSupportActionBar(toolbar)
+
+//        val adView = findViewById(R.id.adView) as AdView
         val adRequest = AdRequest.Builder()
                 .setRequestAgent("android_studio:ad_template").build()
         adView.loadAd(adRequest)
@@ -60,17 +62,17 @@ class MainActivity : AppCompatActivity() {
         res.visibility=View.GONE;
 
         submit.setOnClickListener {
-//            consumseApi(name.text.toString(), partner_name.text.toString());
             if (name.text.toString().isNotEmpty()) {
                 progressBar1.visibility=View.VISIBLE;
                 beginSearch(name.text.toString(), partner_name.text.toString())
             }
         }
-    }
 
-//    fun consumseApi(name: String, partner_name: String){
-//
-//    }
+        bar_step.setOnClickListener {
+            val intent = Intent(this, HealthliveActivity::class.java)
+            startActivity(intent)
+        }
+    }
 
     override fun onResume() {
         super.onResume()

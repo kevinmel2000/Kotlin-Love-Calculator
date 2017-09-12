@@ -3,6 +3,8 @@
     package="com.farifam.lovecalculator">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.samsung.android.providers.context.permission.WRITE_USE_APP_FEATURE_SURVEY" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/cardiogram"
@@ -10,13 +12,15 @@
         android:roundIcon="@mipmap/cardiogram"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".HealthliveActivity"></activity>
     </application>
 
 </manifest>
